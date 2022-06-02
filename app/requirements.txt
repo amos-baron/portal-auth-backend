@@ -1,0 +1,9 @@
+pydantic
+typing
+sqlalchemy
+fastapi
+httpx
+jwt
+json
+starlette
+sqlmodel
