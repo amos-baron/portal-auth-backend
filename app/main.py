@@ -1,4 +1,6 @@
 import os, sys
+import uvicorn
+
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
@@ -21,4 +23,8 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth")
 app.include_router(user_info_router, prefix="/user_info")
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8081)
+
 
