@@ -4,6 +4,8 @@ from pydantic import BaseSettings, Field, validator
 class Settings(BaseSettings):
     realm: str = "Clients"
     env: str = Field("prod", env="ENV")
+    app_interface: str = Field("0.0.0.0", env="APP_INTERFACE")
+    app_port: int = Field(8081, env="APP_PORT")
     app_url: str = Field("127.0.0.1:8000", env="APP_URL")
     db_uri: str = Field(
         "postgresql://example:example@localhost:5432/postgres", env="DB_URI"
