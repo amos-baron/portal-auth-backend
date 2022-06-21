@@ -10,23 +10,9 @@ class AuthorizationResponse(BaseModel):
 
 
 class KeyCloakUser(BaseModel):
-    login: str
-    name: str
-    company: str
-    location: str
-    email: str
-    avatar_url: str
-
-
-class User(BaseModel):
-    id: int
-    login: str
     name: str
     email: str
-    picture: str
-
-    class Config:
-        orm_mode = True
+    sid: str
 
 
 class ValidationJson(BaseModel):
@@ -37,4 +23,4 @@ class ValidationJson(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
-    user: User
+    user: KeyCloakUser

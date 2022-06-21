@@ -6,4 +6,4 @@ httpx
 jwt
 json
 starlette
-sqlmodel
+cryptography
