@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from typing import Any, Dict
 from starlette.requests import Request
-from app.auth.routes import validated, get_info
+from app.auth.routes import validate, get_info
 from app.settings import settings
 from starlette.responses import RedirectResponse
 
@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.get("/all")
 async def get_user_info(request: Request) -> Dict:
-    validation_result = await validated(request)
+    validation_result = await validate(request)
 
     if not validation_result["validated"]:
         response = RedirectResponse(url="/auth/login")

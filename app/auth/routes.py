@@ -41,20 +41,24 @@ async def verify_authorization(code: str) -> RedirectResponse:
             "POST", TOKEN_URL, data=payload, headers=headers
         )
         response_body = json.loads(token_response.content)
-        keycloak_token = response_body["access_token"]
+        try:
+            keycloak_token = response_body["access_token"]
+        except KeyError:
+            return RedirectResponse(url="/auth/login")
+
         decoded_keycloak_token = jwt.decode(keycloak_token, options={"verify_signature": False})
         keycloak_user = KeyCloakUser(**decoded_keycloak_token)
         access_token = create_access_token(data=keycloak_user)
         return access_token
 
     user_token = await get_token()
-    response = RedirectResponse(url="/user_info/all")
+    response = RedirectResponse(url="/")
     response.set_cookie("Authorization", value=f"Bearer {user_token}")
     return response
 
 
 @router.get("/inspect")
-async def validated(request: Request) -> ValidationJson:
+async def validate(request: Request) -> ValidationJson:
     authorization: str = request.cookies.get("Authorization")
     scheme, user_token = get_authorization_scheme_param(authorization)
     validated = validate_user_token(user_token)
