@@ -4,10 +4,10 @@ from pydantic import BaseSettings, Field, validator
 class Settings(BaseSettings):
     realm: str = "Clients"
     env: str = Field("prod", env="ENV")
-    app_interface: str = Field("127.0.0.1", env="APP_INTERFACE")
+    app_interface: str = Field("0.0.0.0", env="APP_INTERFACE")
     app_port: int = Field(8000, env="APP_PORT")
-    app_url: str = Field("127.0.0.1:8000", env="APP_URL")
-    keycloak_addr: str = "http://127.0.0.1:8080"
+    app_url: str = Field("0.0.0.0:8000", env="APP_URL")
+    keycloak_addr: str = Field("http://127.0.0.1:8080", env="KEYCLOAK_ADDR")
     backend_client_id: str = Field("app", env="BACKEND_CLIENT_ID")  # change
     backend_client_secret: str = Field("CKLdegY4sk8MopiBuSv9ITnOOZAQWcEH", env="BACKEND_CLIENT_SECRET")  # change
     jwt_private_key: str = Field( b"-----BEGIN RSA PRIVATE KEY-----"
