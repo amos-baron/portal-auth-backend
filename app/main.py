@@ -1,6 +1,6 @@
 import os, sys
 import uvicorn
-from app.settings import settings
+from settings import settings
 
 APP_INTERFACE = settings.app_interface
 APP_PORT = settings.app_port
