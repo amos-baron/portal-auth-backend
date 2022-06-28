@@ -2,3 +2,4 @@ fastapi
 jwt
 requests
 cryptography
+uvicorn
